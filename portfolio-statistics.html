@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Basic Portfolio Statistics</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="">
+
+    <link rel="stylesheet" id="theme_link" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.6.0/materia/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="/Teaching/content/navbar-fixed-left.css" />
+    <link type="text/css" rel="stylesheet" href="/Teaching/content/fsdocs-default.css" />
+    <link type="text/css" rel="stylesheet" href="/Teaching/content/fsdocs-custom.css" />
+    <script type="text/javascript" src="/Teaching/content/fsdocs-tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+    <!-- END SEARCH BOX: this adds support for the search box -->
+    
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-secondary fixed-left" id="fsdocs-nav">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse navbar-nav-scroll" id="navbarsExampleDefault">
+            <a href="/Teaching/"><img id="fsdocs-logo" src="/Teaching/img/logo.png" /></a>
+            <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+            <div id="header">
+                <div class="searchbox" id="fsdocs-searchbox">
+                    <label for="search-by">
+                        <i class="fas fa-search"></i>
+                    </label>
+                    <input data-search-input="" id="search-by" type="search" placeholder="Search..." />
+                    <span data-search-clear="">
+                        <i class="fas fa-times"></i>
+                    </span>
+                </div>
+            </div>
+
+            <!-- END SEARCH BOX: this adds support for the search box -->
+            <ul class="navbar-nav">
+                <li class="nav-header">Links</li>
+                <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/nhirschey/Teaching/blob/main/LICENSE.md">License</a></li>
+                <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/nhirschey/Teaching">Source Repository</a></li>
+                <li class="nav-header">
+  Getting Started
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="/Teaching/install.html">
+    Install Software
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="/Teaching/learn-fsharp.html">
+    Learn F#
+  </a>
+</li>             
+<li class="nav-header">
+  Lectures
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="/Teaching/fundamentals.html">
+    Fundamentals
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="/Teaching/portfolio-statistics.html">
+    Basic Portfolio Statistics
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="/Teaching/VolatilityTiming.html">
+    Volatility Timing
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="/Teaching/PortfolioFormation-SimpleExample.html">
+    Building a strategy
+  </a>
+</li>             
+<li class="nav-header">
+  Practice Quizzes
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="/Teaching/quizzes/fundamentals-PracticeQuiz.html">
+    Fundamentals
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="/Teaching/quizzes/volatilityTiming-PracticeQuiz.html">
+    Volatility Timing Part 1
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="/Teaching/quizzes/volatilityTiming-PracticeQuiz-2.html">
+    Volatility Timing Part 2
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="/Teaching/quizzes/Option-Match-Map-practiceQuiz.html">
+    Option Match Map
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="/Teaching/quizzes/discriminatedUnion-practiceQuiz.html">
+    Dicriminated Union
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="/Teaching/quizzes/portfolios-PracticeQuiz.html">
+    Portfolios
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="/Teaching/quizzes/factors-practiceQuiz.html">
+    Factors
+  </a>
+</li>             
+<li class="nav-header">
+  Other
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="/Teaching/Common.html">
+    Common
+  </a>
+</li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="masthead">
+            <h3 class="muted"><a href="/Teaching/">Teaching</a></h3>
+        </div>
+        <hr />
+        <div class="container" id="fsdocs-content">
+            
+<p><a href="https://mybinder.org/v2/gh/nhirschey/teaching/gh-pages?filepath=portfolio-statistics.ipynb"><img src="img/badge-binder.svg" alt="Binder" /></a>&emsp;
+<a href="/Teaching//portfolio-statistics.fsx"><img src="img/badge-script.svg" alt="Script" /></a>&emsp;
+<a href="/Teaching//portfolio-statistics.ipynb"><img src="img/badge-notebook.svg" alt="Notebook" /></a></p>
+<p>This page covers important fundamentals for building portfolios.</p>
+<ul>
+<li><a href="#Portfolio-Weights">Portfolio Weights</a></li>
+<li><a href="#Mean-and-Variance-of-Portfolio-Returns">Mean and Variance of Portfolio Returns</a></li>
+<li><a href="#Leverage">Leverage</a></li>
+</ul>
+<h2><a name="Portfolio-Weights" class="anchor" href="#Portfolio-Weights">Portfolio Weights</a></h2>
+<p>An investment portfolio consists of positions in assets.
+It is common to refer to a position's size as its share of
+the portfolio's total value.
+This is known as the asset's portfolio weight.</p>
+<p>The portfolio weight of asset <span class="math">\(i\)</span> in portfolio <span class="math">\(p\)</span> is</p>
+<p><span class="math">\[w_i=(\text{positionValue}_i)/(\text{portfolioValue}_p)\]</span>.</p>
+<h3><a name="Long-positions" class="anchor" href="#Long-positions">Long positions</a></h3>
+<p>When an investor buys a long position,
+they pay for the position now and hope to sell it later at a higher price.</p>
+<p>Let's look at cash flows for long positions.</p>
+<ul>
+<li>At time 0: investor has $100 cash and no shares.</li>
+<li>
+At time 1: investor takes their $100 of cash and buys 4 shares 
+of stock at a price of $25 per share. They have no cash and are long 4 shares.
+</li>
+<li>
+At time 2: the stock has risen to $27, the investor sells their 4 shares.
+They have $108 of cash and no shares.
+</li>
+</ul>
+<p>We can define some functions to update an account given these trades.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// A record type that defines an account</span>
+<span class="k">type</span> <span class="rt">AccountBalances</span> <span class="o">=</span>
+    <span class="pn">{</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="prop">Time</span><span class="pn">:</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="vt">int</span>
+      <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="prop">Cash</span><span class="pn">:</span> <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="vt">float</span> 
+      <span onmouseout="hideTip(event, 'fs5', 5)" onmouseover="showTip(event, 'fs5', 5)" class="prop">Shares</span><span class="pn">:</span> <span onmouseout="hideTip(event, 'fs4', 6)" onmouseover="showTip(event, 'fs4', 6)" class="vt">float</span> <span class="pn">}</span>
+
+<span class="c">// A record type that defines a trade</span>
+<span class="k">type</span> <span onmouseout="hideTip(event, 'fs6', 7)" onmouseover="showTip(event, 'fs6', 7)" class="rt">Trade</span> <span class="o">=</span> 
+    <span class="pn">{</span> <span onmouseout="hideTip(event, 'fs7', 8)" onmouseover="showTip(event, 'fs7', 8)" class="prop">Shares</span><span class="pn">:</span> <span onmouseout="hideTip(event, 'fs4', 9)" onmouseover="showTip(event, 'fs4', 9)" class="vt">float</span> 
+      <span onmouseout="hideTip(event, 'fs8', 10)" onmouseover="showTip(event, 'fs8', 10)" class="prop">Price</span> <span class="pn">:</span> <span onmouseout="hideTip(event, 'fs4', 11)" onmouseover="showTip(event, 'fs4', 11)" class="vt">float</span> <span class="pn">}</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs9', 12)" onmouseover="showTip(event, 'fs9', 12)" class="id">accountAt0</span> <span class="o">=</span> <span class="pn">{</span> <span class="prop">Time</span> <span class="o">=</span> <span class="n">0</span><span class="pn">;</span> <span class="prop">Cash</span> <span class="o">=</span> <span class="n">100.0</span><span class="pn">;</span> <span class="prop">Shares</span> <span class="o">=</span> <span class="n">0.0</span> <span class="pn">}</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs10', 13)" onmouseover="showTip(event, 'fs10', 13)" class="id">tradeAt1</span> <span class="o">=</span> <span class="pn">{</span> <span class="prop">Shares</span> <span class="o">=</span> <span class="n">4.0</span><span class="pn">;</span> <span class="prop">Price</span> <span class="o">=</span> <span class="n">25.0</span> <span class="pn">}</span>
+
+<span class="c">// `updateAccount` is a function that updates an account after a trade is made.</span>
+<span class="c">// </span>
+<span class="c">// (trade: Trade) restricts the `trade` parameter to data of type `Trade`.</span>
+<span class="c">//</span>
+<span class="c">// (inAccount: AccountBalances) restricts the `inAccount` parameter </span>
+<span class="c">// to data of type `AccountBalances`</span>
+<span class="c">//</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs11', 14)" onmouseover="showTip(event, 'fs11', 14)" class="fn">updateAccount</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs12', 15)" onmouseover="showTip(event, 'fs12', 15)" class="fn">trade</span><span class="pn">:</span> <span onmouseout="hideTip(event, 'fs6', 16)" onmouseover="showTip(event, 'fs6', 16)" class="rt">Trade</span><span class="pn">)</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs13', 17)" onmouseover="showTip(event, 'fs13', 17)" class="fn">inAccount</span><span class="pn">:</span> <span onmouseout="hideTip(event, 'fs14', 18)" onmouseover="showTip(event, 'fs14', 18)" class="rt">AccountBalances</span><span class="pn">)</span> <span class="o">=</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs15', 19)" onmouseover="showTip(event, 'fs15', 19)" class="fn">tradeValue</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs12', 20)" onmouseover="showTip(event, 'fs12', 20)" class="fn">trade</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs8', 21)" onmouseover="showTip(event, 'fs8', 21)" class="id">Price</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs12', 22)" onmouseover="showTip(event, 'fs12', 22)" class="fn">trade</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs7', 23)" onmouseover="showTip(event, 'fs7', 23)" class="id">Shares</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs16', 24)" onmouseover="showTip(event, 'fs16', 24)" class="fn">newCash</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs13', 25)" onmouseover="showTip(event, 'fs13', 25)" class="fn">inAccount</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 26)" onmouseover="showTip(event, 'fs3', 26)" class="id">Cash</span> <span class="o">-</span> <span onmouseout="hideTip(event, 'fs15', 27)" onmouseover="showTip(event, 'fs15', 27)" class="fn">tradeValue</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs17', 28)" onmouseover="showTip(event, 'fs17', 28)" class="fn">newShares</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs13', 29)" onmouseover="showTip(event, 'fs13', 29)" class="fn">inAccount</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs5', 30)" onmouseover="showTip(event, 'fs5', 30)" class="id">Shares</span> <span class="o">+</span> <span onmouseout="hideTip(event, 'fs12', 31)" onmouseover="showTip(event, 'fs12', 31)" class="fn">trade</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs7', 32)" onmouseover="showTip(event, 'fs7', 32)" class="id">Shares</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs18', 33)" onmouseover="showTip(event, 'fs18', 33)" class="fn">newTime</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs13', 34)" onmouseover="showTip(event, 'fs13', 34)" class="fn">inAccount</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs1', 35)" onmouseover="showTip(event, 'fs1', 35)" class="id">Time</span> <span class="o">+</span> <span class="n">1</span>
+    <span class="pn">{</span> <span class="prop">Time</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs18', 36)" onmouseover="showTip(event, 'fs18', 36)" class="fn">newTime</span> 
+      <span class="prop">Cash</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs16', 37)" onmouseover="showTip(event, 'fs16', 37)" class="fn">newCash</span> 
+      <span class="prop">Shares</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs17', 38)" onmouseover="showTip(event, 'fs17', 38)" class="fn">newShares</span> <span class="pn">}</span>
+</code></pre>
+<p>You can make names with spaces using `` before and after.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs19', 39)" onmouseover="showTip(event, 'fs19', 39)" class="id">``expected account at t1``</span> <span class="o">=</span> <span class="pn">{</span> <span class="prop">Time</span> <span class="o">=</span> <span class="n">1</span><span class="pn">;</span> <span class="prop">Cash</span> <span class="o">=</span> <span class="n">0.0</span><span class="pn">;</span> <span class="prop">Shares</span> <span class="o">=</span> <span class="n">4.0</span><span class="pn">}</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs20', 40)" onmouseover="showTip(event, 'fs20', 40)" class="id">``actual account at t1``</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs11', 41)" onmouseover="showTip(event, 'fs11', 41)" class="fn">updateAccount</span> <span onmouseout="hideTip(event, 'fs10', 42)" onmouseover="showTip(event, 'fs10', 42)" class="id">tradeAt1</span> <span onmouseout="hideTip(event, 'fs9', 43)" onmouseover="showTip(event, 'fs9', 43)" class="id">accountAt0</span> 
+
+<span onmouseout="hideTip(event, 'fs20', 44)" onmouseover="showTip(event, 'fs20', 44)" class="id">``actual account at t1``</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>{ Time = 1
+  Cash = 0.0
+  Shares = 4.0 }</code></pre></td></tr></table>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">if</span> <span onmouseout="hideTip(event, 'fs20', 45)" onmouseover="showTip(event, 'fs20', 45)" class="id">``actual account at t1``</span> <span class="o">&lt;&gt;</span> <span onmouseout="hideTip(event, 'fs19', 46)" onmouseover="showTip(event, 'fs19', 46)" class="id">``expected account at t1``</span> <span class="k">then</span>
+    <span onmouseout="hideTip(event, 'fs21', 47)" onmouseover="showTip(event, 'fs21', 47)" class="fn">failwith</span> <span class="s">&quot;You are not updating account correctly after a trade&quot;</span>
+</code></pre>
+<p>Now we can calculate how the account value changes over time.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs22', 48)" onmouseover="showTip(event, 'fs22', 48)" class="id">accountAt1</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs11', 49)" onmouseover="showTip(event, 'fs11', 49)" class="fn">updateAccount</span> <span onmouseout="hideTip(event, 'fs10', 50)" onmouseover="showTip(event, 'fs10', 50)" class="id">tradeAt1</span> <span onmouseout="hideTip(event, 'fs9', 51)" onmouseover="showTip(event, 'fs9', 51)" class="id">accountAt0</span>
+
+<span onmouseout="hideTip(event, 'fs22', 52)" onmouseover="showTip(event, 'fs22', 52)" class="id">accountAt1</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>{ Time = 1
+  Cash = 0.0
+  Shares = 4.0 }</code></pre></td></tr></table>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs23', 53)" onmouseover="showTip(event, 'fs23', 53)" class="id">tradeAt2</span> <span class="o">=</span> <span class="pn">{</span> <span class="prop">Shares</span> <span class="o">=</span> <span class="o">-</span><span class="n">4.0</span><span class="pn">;</span> <span class="prop">Price</span> <span class="o">=</span> <span class="n">27.0</span> <span class="pn">}</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs24', 54)" onmouseover="showTip(event, 'fs24', 54)" class="id">accountAt2</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs11', 55)" onmouseover="showTip(event, 'fs11', 55)" class="fn">updateAccount</span> <span onmouseout="hideTip(event, 'fs23', 56)" onmouseover="showTip(event, 'fs23', 56)" class="id">tradeAt2</span> <span onmouseout="hideTip(event, 'fs22', 57)" onmouseover="showTip(event, 'fs22', 57)" class="id">accountAt1</span>
+
+<span onmouseout="hideTip(event, 'fs24', 58)" onmouseover="showTip(event, 'fs24', 58)" class="id">accountAt2</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>{ Time = 2
+  Cash = 108.0
+  Shares = 0.0 }</code></pre></td></tr></table>
+<p>We could have also written this code using the pipe operator.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs25', 59)" onmouseover="showTip(event, 'fs25', 59)" class="id">accountAt1&#39;</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs9', 60)" onmouseover="showTip(event, 'fs9', 60)" class="id">accountAt0</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs11', 61)" onmouseover="showTip(event, 'fs11', 61)" class="fn">updateAccount</span> <span onmouseout="hideTip(event, 'fs10', 62)" onmouseover="showTip(event, 'fs10', 62)" class="id">tradeAt1</span> <span class="c">// same as &quot;updateAccount tradeAt1 accountAt0&quot;</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs26', 63)" onmouseover="showTip(event, 'fs26', 63)" class="id">accountAt2&#39;</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs22', 64)" onmouseover="showTip(event, 'fs22', 64)" class="id">accountAt1</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs11', 65)" onmouseover="showTip(event, 'fs11', 65)" class="fn">updateAccount</span> <span onmouseout="hideTip(event, 'fs23', 66)" onmouseover="showTip(event, 'fs23', 66)" class="id">tradeAt2</span> <span class="c">// same as &quot;updateAccount tradeAt2 accountAt1&quot;</span>
+
+<span onmouseout="hideTip(event, 'fs25', 67)" onmouseover="showTip(event, 'fs25', 67)" class="id">accountAt1&#39;</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>{ Time = 1
+  Cash = 0.0
+  Shares = 4.0 }</code></pre></td></tr></table>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs26', 68)" onmouseover="showTip(event, 'fs26', 68)" class="id">accountAt2&#39;</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>{ Time = 2
+  Cash = 108.0
+  Shares = 0.0 }</code></pre></td></tr></table>
+<p>The pipe operator does not look very useful above because
+we are only doing one operation.
+It is more useful when you're doing a series of multiple operations.
+This example recomputes the account value at time 2 by
+chaining together updates for the trades at times 1 and 2.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs27', 69)" onmouseover="showTip(event, 'fs27', 69)" class="id">accountAt2&#39;&#39;</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs9', 70)" onmouseover="showTip(event, 'fs9', 70)" class="id">accountAt0</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs11', 71)" onmouseover="showTip(event, 'fs11', 71)" class="fn">updateAccount</span> <span onmouseout="hideTip(event, 'fs10', 72)" onmouseover="showTip(event, 'fs10', 72)" class="id">tradeAt1</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs11', 73)" onmouseover="showTip(event, 'fs11', 73)" class="fn">updateAccount</span> <span onmouseout="hideTip(event, 'fs23', 74)" onmouseover="showTip(event, 'fs23', 74)" class="id">tradeAt2</span>
+
+<span onmouseout="hideTip(event, 'fs27', 75)" onmouseover="showTip(event, 'fs27', 75)" class="id">accountAt2&#39;&#39;</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>{ Time = 2
+  Cash = 108.0
+  Shares = 0.0 }</code></pre></td></tr></table>
+<p>This code is closer to how you would describe it in English:
+"Start with the account at time 0,
+update it for the trade at time 1,
+then update it for the trade at time 2."</p>
+<blockquote>
+<p>Practice: complete the code for the <code>accountValue</code> function below.
+It should calculate total account value of
+the stock and cash positiions.
+If it is correct then the account value test below should evaluate to <code>true</code></p>
+</blockquote>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs28', 76)" onmouseover="showTip(event, 'fs28', 76)" class="fn">accountValue</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs29', 77)" onmouseover="showTip(event, 'fs29', 77)" class="fn">stockPrice</span><span class="pn">:</span> <span onmouseout="hideTip(event, 'fs4', 78)" onmouseover="showTip(event, 'fs4', 78)" class="vt">float</span><span class="pn">)</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs30', 79)" onmouseover="showTip(event, 'fs30', 79)" class="fn">account</span><span class="pn">:</span> <span onmouseout="hideTip(event, 'fs14', 80)" onmouseover="showTip(event, 'fs14', 80)" class="rt">AccountBalances</span><span class="pn">)</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs21', 81)" onmouseover="showTip(event, 'fs21', 81)" class="fn">failwith</span> <span class="s">&quot;unimplemented&quot;</span>
+</code></pre>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// simple account value test</span>
+<span class="pn">(</span><span onmouseout="hideTip(event, 'fs28', 82)" onmouseover="showTip(event, 'fs28', 82)" class="fn">accountValue</span> <span class="n">27.0</span> <span onmouseout="hideTip(event, 'fs24', 83)" onmouseover="showTip(event, 'fs24', 83)" class="id">accountAt2</span><span class="pn">)</span> <span class="o">=</span> <span class="n">108.0</span>
+</code></pre>
+<h3><a name="Portfolio-weights-of-long-positions" class="anchor" href="#Portfolio-weights-of-long-positions">Portfolio weights of long positions</a></h3>
+<p>Now that we understand long positions we can calculate portfolio weights for them.
+Let's calculate weights for an example <em>Portfolio A</em> consisting of</p>
+<ul>
+<li>$100 invested in AAPL</li>
+<li>$300 invested in GOOG</li>
+<li>$500 invested in TSLA</li>
+</ul>
+<p>These are all long positions, meaning that they have positive costs.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs31', 84)" onmouseover="showTip(event, 'fs31', 84)" class="id">aaplPositionValue</span> <span class="o">=</span> <span class="n">100.0</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs32', 85)" onmouseover="showTip(event, 'fs32', 85)" class="id">googPositionValue</span> <span class="o">=</span> <span class="n">300.0</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs33', 86)" onmouseover="showTip(event, 'fs33', 86)" class="id">tslaPositionValue</span> <span class="o">=</span> <span class="n">500.0</span>
+
+<span class="c">// This implies:</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs34', 87)" onmouseover="showTip(event, 'fs34', 87)" class="id">portfolioValueA</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs31', 88)" onmouseover="showTip(event, 'fs31', 88)" class="id">aaplPositionValue</span> <span class="o">+</span> <span onmouseout="hideTip(event, 'fs32', 89)" onmouseover="showTip(event, 'fs32', 89)" class="id">googPositionValue</span> <span class="o">+</span> <span onmouseout="hideTip(event, 'fs33', 90)" onmouseover="showTip(event, 'fs33', 90)" class="id">tslaPositionValue</span>
+
+<span onmouseout="hideTip(event, 'fs34', 91)" onmouseover="showTip(event, 'fs34', 91)" class="id">portfolioValueA</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>900.0</code></pre></td></tr></table>
+<p>The portfolio weights are then</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs35', 92)" onmouseover="showTip(event, 'fs35', 92)" class="id">aaplWeight</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs31', 93)" onmouseover="showTip(event, 'fs31', 93)" class="id">aaplPositionValue</span> <span class="o">/</span> <span onmouseout="hideTip(event, 'fs34', 94)" onmouseover="showTip(event, 'fs34', 94)" class="id">portfolioValueA</span>
+
+<span onmouseout="hideTip(event, 'fs35', 95)" onmouseover="showTip(event, 'fs35', 95)" class="id">aaplWeight</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>0.1111111111</code></pre></td></tr></table>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs36', 96)" onmouseover="showTip(event, 'fs36', 96)" class="id">googWeight</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs32', 97)" onmouseover="showTip(event, 'fs32', 97)" class="id">googPositionValue</span> <span class="o">/</span> <span onmouseout="hideTip(event, 'fs34', 98)" onmouseover="showTip(event, 'fs34', 98)" class="id">portfolioValueA</span>
+
+<span onmouseout="hideTip(event, 'fs36', 99)" onmouseover="showTip(event, 'fs36', 99)" class="id">googWeight</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>0.3333333333</code></pre></td></tr></table>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs37', 100)" onmouseover="showTip(event, 'fs37', 100)" class="id">tslaWeight</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs33', 101)" onmouseover="showTip(event, 'fs33', 101)" class="id">tslaPositionValue</span> <span class="o">/</span> <span onmouseout="hideTip(event, 'fs34', 102)" onmouseover="showTip(event, 'fs34', 102)" class="id">portfolioValueA</span>
+
+<span onmouseout="hideTip(event, 'fs37', 103)" onmouseover="showTip(event, 'fs37', 103)" class="id">tslaWeight</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>0.5555555556</code></pre></td></tr></table>
+<p>These weights for AAPL, GOOG, and TSLA are all positive.
+Long positions always have positive weights.</p>
+<p>Another thing to notice is that the portfolio weights add up to one (or 100%):</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs35', 104)" onmouseover="showTip(event, 'fs35', 104)" class="id">aaplWeight</span> <span class="o">+</span> <span onmouseout="hideTip(event, 'fs36', 105)" onmouseover="showTip(event, 'fs36', 105)" class="id">googWeight</span> <span class="o">+</span> <span onmouseout="hideTip(event, 'fs37', 106)" onmouseover="showTip(event, 'fs37', 106)" class="id">tslaWeight</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>val it : float = 1.0</code></pre></td></tr></table>
+<p>This portfolio is a net long portfolio,
+meaning that it costs you money to purchase it.
+Net long portfolios such as this one must
+have portfolio weights that add up to one.
+Due to margin requirements, real-world
+portfolios are generally net long--you must
+put up capital to acquire the portfolio.</p>
+<p>The other type of portfolio is a zero-cost portfolio.
+As the name implies, zero-cost portfolios do not require any investment to purchase.
+There is no cost because long positions are funded by offsetting short positions.
+To see how this works we need to examine how short positions work.</p>
+<h3><a name="Short-positions" class="anchor" href="#Short-positions">Short positions</a></h3>
+<p>When an investor buys a long position,
+they pay for the position now and hope to sell it later at a higher price.
+A short sale reverses this.
+The investor sells the position now and hopes to buy it back later at a lower price.</p>
+<p>We now go through an example to see how the cash flows work.</p>
+<ul>
+<li>At time 0: investor has $100 cash and no shares.</li>
+<li>
+At time 1: investor borrows 4 shares of stock and sells them
+for a price of $25 per share. They have $200 cash and are short 4 shares.
+</li>
+<li>
+At time 2: the stock has risen to $27, the investor buys back the
+4 shares that they sold short and returns them to the person that
+they borrowed them from. They have $92 of cash and 0 shares.
+</li>
+</ul>
+<p>The investor's cash and stock balances at the end of each period will look something like</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs38', 107)" onmouseover="showTip(event, 'fs38', 107)" class="id">shortAt1</span> <span class="o">=</span> <span class="pn">{</span> <span class="prop">Shares</span> <span class="o">=</span> <span class="o">-</span><span class="n">4.0</span><span class="pn">;</span> <span class="prop">Price</span> <span class="o">=</span> <span class="n">25.0</span> <span class="pn">}</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs39', 108)" onmouseover="showTip(event, 'fs39', 108)" class="id">shortCoverAt2</span> <span class="o">=</span> <span class="pn">{</span> <span class="prop">Shares</span> <span class="o">=</span> <span class="n">4.0</span><span class="pn">;</span> <span class="prop">Price</span> <span class="o">=</span> <span class="n">27.0</span> <span class="pn">}</span>
+
+<span class="c">// positions at t1</span>
+<span onmouseout="hideTip(event, 'fs9', 109)" onmouseover="showTip(event, 'fs9', 109)" class="id">accountAt0</span> 
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs11', 110)" onmouseover="showTip(event, 'fs11', 110)" class="fn">updateAccount</span> <span onmouseout="hideTip(event, 'fs38', 111)" onmouseover="showTip(event, 'fs38', 111)" class="id">shortAt1</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>{ Time = 1
+  Cash = 200.0
+  Shares = -4.0 }</code></pre></td></tr></table>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// positions at t2</span>
+<span onmouseout="hideTip(event, 'fs9', 112)" onmouseover="showTip(event, 'fs9', 112)" class="id">accountAt0</span> 
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs11', 113)" onmouseover="showTip(event, 'fs11', 113)" class="fn">updateAccount</span> <span onmouseout="hideTip(event, 'fs38', 114)" onmouseover="showTip(event, 'fs38', 114)" class="id">shortAt1</span> 
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs11', 115)" onmouseover="showTip(event, 'fs11', 115)" class="fn">updateAccount</span> <span onmouseout="hideTip(event, 'fs39', 116)" onmouseover="showTip(event, 'fs39', 116)" class="id">shortCoverAt2</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>{ Time = 2
+  Cash = 92.0
+  Shares = 0.0 }</code></pre></td></tr></table>
+<h3><a name="Portfolio-weights-for-short-positions" class="anchor" href="#Portfolio-weights-for-short-positions">Portfolio weights for short positions</a></h3>
+<p>Let's create a new portfolio, <em>Portfolio B</em>, that includes short sales and calculate weights. Assume that you start with <em>Portfolio A</em> and short $150 of AMZN stock. This generates $150 of cash that you have to put somewhere. For individual investors, often your broker puts it in bonds and gives you none of the interest. Institutional investors can get some of the interest or even reinvest the proceeds in something else. We will assume that we are an institution and can reinvest all of the short proceeds. We will take the $150 and add $50 to each of our AAPL, GOOG, and TLSA positions.</p>
+<p>Short positions have negative portfolio weights.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs40', 117)" onmouseover="showTip(event, 'fs40', 117)" class="id">amznPositionValueB</span> <span class="o">=</span> <span class="o">-</span><span class="n">150.0</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs41', 118)" onmouseover="showTip(event, 'fs41', 118)" class="id">aaplPositionValueB</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs31', 119)" onmouseover="showTip(event, 'fs31', 119)" class="id">aaplPositionValue</span> <span class="o">+</span> <span class="n">50.0</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs42', 120)" onmouseover="showTip(event, 'fs42', 120)" class="id">googPositionValueB</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs32', 121)" onmouseover="showTip(event, 'fs32', 121)" class="id">googPositionValue</span> <span class="o">+</span> <span class="n">50.0</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs43', 122)" onmouseover="showTip(event, 'fs43', 122)" class="id">tslaPositionValueB</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs33', 123)" onmouseover="showTip(event, 'fs33', 123)" class="id">tslaPositionValue</span> <span class="o">+</span> <span class="n">50.0</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs44', 124)" onmouseover="showTip(event, 'fs44', 124)" class="id">portfolioValueB</span> <span class="o">=</span> 
+    <span onmouseout="hideTip(event, 'fs40', 125)" onmouseover="showTip(event, 'fs40', 125)" class="id">amznPositionValueB</span> <span class="o">+</span>
+    <span onmouseout="hideTip(event, 'fs41', 126)" onmouseover="showTip(event, 'fs41', 126)" class="id">aaplPositionValueB</span> <span class="o">+</span>
+    <span onmouseout="hideTip(event, 'fs42', 127)" onmouseover="showTip(event, 'fs42', 127)" class="id">googPositionValueB</span> <span class="o">+</span>
+    <span onmouseout="hideTip(event, 'fs43', 128)" onmouseover="showTip(event, 'fs43', 128)" class="id">tslaPositionValueB</span>
+
+<span onmouseout="hideTip(event, 'fs44', 129)" onmouseover="showTip(event, 'fs44', 129)" class="id">portfolioValueB</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>900.0</code></pre></td></tr></table>
+<p>Compare to <em>Portfolio A</em></p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs34', 130)" onmouseover="showTip(event, 'fs34', 130)" class="id">portfolioValueA</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs44', 131)" onmouseover="showTip(event, 'fs44', 131)" class="id">portfolioValueB</span> 
+</code></pre>
+<table class="pre"><tr><td><pre><code>val it : bool = true</code></pre></td></tr></table>
+<p>The weights in <em>Portfolio B</em>:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs45', 132)" onmouseover="showTip(event, 'fs45', 132)" class="id">amznWeightB</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs40', 133)" onmouseover="showTip(event, 'fs40', 133)" class="id">amznPositionValueB</span> <span class="o">/</span> <span onmouseout="hideTip(event, 'fs44', 134)" onmouseover="showTip(event, 'fs44', 134)" class="id">portfolioValueB</span>
+
+<span onmouseout="hideTip(event, 'fs45', 135)" onmouseover="showTip(event, 'fs45', 135)" class="id">amznWeightB</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>-0.1666666667</code></pre></td></tr></table>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs46', 136)" onmouseover="showTip(event, 'fs46', 136)" class="id">aaplWeightB</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs41', 137)" onmouseover="showTip(event, 'fs41', 137)" class="id">aaplPositionValueB</span> <span class="o">/</span> <span onmouseout="hideTip(event, 'fs44', 138)" onmouseover="showTip(event, 'fs44', 138)" class="id">portfolioValueB</span>
+
+<span onmouseout="hideTip(event, 'fs46', 139)" onmouseover="showTip(event, 'fs46', 139)" class="id">aaplWeightB</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>0.1666666667</code></pre></td></tr></table>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs47', 140)" onmouseover="showTip(event, 'fs47', 140)" class="id">googWeightB</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs42', 141)" onmouseover="showTip(event, 'fs42', 141)" class="id">googPositionValueB</span> <span class="o">/</span> <span onmouseout="hideTip(event, 'fs44', 142)" onmouseover="showTip(event, 'fs44', 142)" class="id">portfolioValueB</span>
+
+<span onmouseout="hideTip(event, 'fs47', 143)" onmouseover="showTip(event, 'fs47', 143)" class="id">googWeightB</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>0.3888888889</code></pre></td></tr></table>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs48', 144)" onmouseover="showTip(event, 'fs48', 144)" class="id">tslaWeightB</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs43', 145)" onmouseover="showTip(event, 'fs43', 145)" class="id">tslaPositionValueB</span> <span class="o">/</span> <span onmouseout="hideTip(event, 'fs44', 146)" onmouseover="showTip(event, 'fs44', 146)" class="id">portfolioValueB</span>
+
+<span onmouseout="hideTip(event, 'fs48', 147)" onmouseover="showTip(event, 'fs48', 147)" class="id">tslaWeightB</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>0.6111111111</code></pre></td></tr></table>
+<p>The weights of <em>Portfolio B</em> also add up to one.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs45', 148)" onmouseover="showTip(event, 'fs45', 148)" class="id">amznWeightB</span> <span class="o">+</span> <span onmouseout="hideTip(event, 'fs46', 149)" onmouseover="showTip(event, 'fs46', 149)" class="id">aaplWeightB</span> <span class="o">+</span> <span onmouseout="hideTip(event, 'fs47', 150)" onmouseover="showTip(event, 'fs47', 150)" class="id">googWeightB</span> <span class="o">+</span> <span onmouseout="hideTip(event, 'fs48', 151)" onmouseover="showTip(event, 'fs48', 151)" class="id">tslaWeightB</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>val it : float = 1.0</code></pre></td></tr></table>
+<h3><a name="Zero-cost-portfolios" class="anchor" href="#Zero-cost-portfolios">Zero-cost portfolios</a></h3>
+<p>Another type of portfolio that you will see is zero-cost portfolios.
+They are called self funding because the short sale proceeds
+fund the long investments. The portfolio weights add up to 0.
+You can scale weights relative to what they would be per $ long or short.</p>
+<p>An example:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Portfolio C</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs49', 152)" onmouseover="showTip(event, 'fs49', 152)" class="id">koPositionValue</span> <span class="o">=</span> <span class="o">-</span><span class="n">50.0</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs50', 153)" onmouseover="showTip(event, 'fs50', 153)" class="id">hogPositionValue</span> <span class="o">=</span> <span class="n">40.0</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs51', 154)" onmouseover="showTip(event, 'fs51', 154)" class="id">yumPositionValue</span> <span class="o">=</span> <span class="n">10.0</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs52', 155)" onmouseover="showTip(event, 'fs52', 155)" class="id">dollarsLong</span> <span class="o">=</span> <span class="n">50.0</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs53', 156)" onmouseover="showTip(event, 'fs53', 156)" class="id">koWeight</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs49', 157)" onmouseover="showTip(event, 'fs49', 157)" class="id">koPositionValue</span> <span class="o">/</span> <span onmouseout="hideTip(event, 'fs52', 158)" onmouseover="showTip(event, 'fs52', 158)" class="id">dollarsLong</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs54', 159)" onmouseover="showTip(event, 'fs54', 159)" class="id">hogWeight</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs50', 160)" onmouseover="showTip(event, 'fs50', 160)" class="id">hogPositionValue</span> <span class="o">/</span> <span onmouseout="hideTip(event, 'fs52', 161)" onmouseover="showTip(event, 'fs52', 161)" class="id">dollarsLong</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs55', 162)" onmouseover="showTip(event, 'fs55', 162)" class="id">yumWeight</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs51', 163)" onmouseover="showTip(event, 'fs51', 163)" class="id">yumPositionValue</span> <span class="o">/</span> <span onmouseout="hideTip(event, 'fs52', 164)" onmouseover="showTip(event, 'fs52', 164)" class="id">dollarsLong</span>
+
+<span onmouseout="hideTip(event, 'fs56', 165)" onmouseover="showTip(event, 'fs56', 165)" class="fn">printfn</span> <span class="s">$&quot;koWeight = {</span><span onmouseout="hideTip(event, 'fs53', 166)" onmouseover="showTip(event, 'fs53', 166)" class="id">koWeight</span><span class="s">}&quot;</span>
+<span onmouseout="hideTip(event, 'fs56', 167)" onmouseover="showTip(event, 'fs56', 167)" class="fn">printfn</span> <span class="s">$&quot;hogWeight= {</span><span onmouseout="hideTip(event, 'fs54', 168)" onmouseover="showTip(event, 'fs54', 168)" class="id">hogWeight</span><span class="s">}&quot;</span>
+<span onmouseout="hideTip(event, 'fs56', 169)" onmouseover="showTip(event, 'fs56', 169)" class="fn">printfn</span> <span class="s">$&quot;yumWeight= {</span><span onmouseout="hideTip(event, 'fs55', 170)" onmouseover="showTip(event, 'fs55', 170)" class="id">yumWeight</span><span class="s">}&quot;</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>koWeight = -1
+hogWeight= 0.8
+yumWeight= 0.2</code></pre></td></tr></table>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs53', 171)" onmouseover="showTip(event, 'fs53', 171)" class="id">koWeight</span> <span class="o">+</span> <span onmouseout="hideTip(event, 'fs54', 172)" onmouseover="showTip(event, 'fs54', 172)" class="id">hogWeight</span> <span class="o">+</span> <span onmouseout="hideTip(event, 'fs55', 173)" onmouseover="showTip(event, 'fs55', 173)" class="id">yumWeight</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>5.551115123e-17</code></pre></td></tr></table>
+<h3><a name="Calculating-weights-using-a-list-of-positions" class="anchor" href="#Calculating-weights-using-a-list-of-positions">Calculating weights using a list of positions</a></h3>
+<p>The calculations that we did thus far required code for each position.
+We did the same thing to each position, so there was some repetition.
+We can reduce the repetition by putting the positions into a list
+and then operating on the elements of the list via iteration.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// defining a position record type</span>
+<span class="k">type</span> <span onmouseout="hideTip(event, 'fs57', 174)" onmouseover="showTip(event, 'fs57', 174)" class="rt">Position</span> <span class="o">=</span> <span class="pn">{</span> <span onmouseout="hideTip(event, 'fs58', 175)" onmouseover="showTip(event, 'fs58', 175)" class="prop">Id</span><span class="pn">:</span> <span onmouseout="hideTip(event, 'fs59', 176)" onmouseover="showTip(event, 'fs59', 176)" class="rt">string</span><span class="pn">;</span> <span onmouseout="hideTip(event, 'fs60', 177)" onmouseover="showTip(event, 'fs60', 177)" class="prop">PositionValue</span><span class="pn">:</span> <span onmouseout="hideTip(event, 'fs4', 178)" onmouseover="showTip(event, 'fs4', 178)" class="vt">float</span> <span class="pn">}</span>
+
+<span class="c">// assigning a list of positions to a value named portfolio</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs61', 179)" onmouseover="showTip(event, 'fs61', 179)" class="id">portfolio</span> <span class="o">=</span>
+    <span class="pn">[</span> <span class="pn">{</span> <span class="prop">Id</span> <span class="o">=</span> <span class="s">&quot;AMZN&quot;</span><span class="pn">;</span> <span class="prop">PositionValue</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs40', 180)" onmouseover="showTip(event, 'fs40', 180)" class="id">amznPositionValueB</span> <span class="pn">}</span>
+      <span class="pn">{</span> <span class="prop">Id</span> <span class="o">=</span> <span class="s">&quot;AAPL&quot;</span><span class="pn">;</span> <span class="prop">PositionValue</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs41', 181)" onmouseover="showTip(event, 'fs41', 181)" class="id">aaplPositionValueB</span> <span class="pn">}</span>
+      <span class="pn">{</span> <span class="prop">Id</span> <span class="o">=</span> <span class="s">&quot;GOOG&quot;</span><span class="pn">;</span> <span class="prop">PositionValue</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs42', 182)" onmouseover="showTip(event, 'fs42', 182)" class="id">googPositionValueB</span> <span class="pn">}</span>
+      <span class="pn">{</span> <span class="prop">Id</span> <span class="o">=</span> <span class="s">&quot;TSLA&quot;</span><span class="pn">;</span> <span class="prop">PositionValue</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs43', 183)" onmouseover="showTip(event, 'fs43', 183)" class="id">tslaPositionValueB</span> <span class="pn">}</span> <span class="pn">]</span>
+
+<span class="c">// This is called a list comprehension</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs62', 184)" onmouseover="showTip(event, 'fs62', 184)" class="id">positionValues</span> <span class="o">=</span> <span class="pn">[</span> <span class="k">for</span> <span onmouseout="hideTip(event, 'fs63', 185)" onmouseover="showTip(event, 'fs63', 185)" class="fn">p</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs61', 186)" onmouseover="showTip(event, 'fs61', 186)" class="id">portfolio</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs63', 187)" onmouseover="showTip(event, 'fs63', 187)" class="fn">p</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs60', 188)" onmouseover="showTip(event, 'fs60', 188)" class="id">PositionValue</span> <span class="pn">]</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>[-150.0; 150.0; 350.0; 550.0]</code></pre></td></tr></table>
+<p>The list module has many different functions for operating on lists.
+If you type <code>List.</code> you should see many different functions pop up.
+These functions are very useful. We will explore them in more detail later.</p>
+<p>For now, let's see what <code>List.map</code> does.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs61', 189)" onmouseover="showTip(event, 'fs61', 189)" class="id">portfolio</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs64', 190)" onmouseover="showTip(event, 'fs64', 190)" class="m">List</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs65', 191)" onmouseover="showTip(event, 'fs65', 191)" class="id">map</span> <span class="pn">(</span><span class="k">fun</span> <span onmouseout="hideTip(event, 'fs63', 192)" onmouseover="showTip(event, 'fs63', 192)" class="fn">p</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs63', 193)" onmouseover="showTip(event, 'fs63', 193)" class="fn">p</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs60', 194)" onmouseover="showTip(event, 'fs60', 194)" class="id">PositionValue</span><span class="pn">)</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>val it : float list = [-150.0; 150.0; 350.0; 550.0]</code></pre></td></tr></table>
+<p>This is the same result as the <code>positionValues</code> value that we calculated
+using the list comprehension.
+<code>List.map</code> "maps" each element of the list to an output using a function.
+In this case, our function <code>(fun p -&gt; p.PositionValue)</code> was an anonymous function.</p>
+<p>Another useful function from the list module is <code>List.sum</code>.
+We can use it to calculate the total value of the portfolio by
+summing position values.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs66', 195)" onmouseover="showTip(event, 'fs66', 195)" class="id">portfolioValue</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs62', 196)" onmouseover="showTip(event, 'fs62', 196)" class="id">positionValues</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs64', 197)" onmouseover="showTip(event, 'fs64', 197)" class="m">List</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs67', 198)" onmouseover="showTip(event, 'fs67', 198)" class="id">sum</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>900.0</code></pre></td></tr></table>
+<p>And with this we can calculate portfolio weights.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs68', 199)" onmouseover="showTip(event, 'fs68', 199)" class="id">portfolioWeights</span> <span class="o">=</span>
+    <span class="pn">[</span> <span class="k">for</span> <span onmouseout="hideTip(event, 'fs63', 200)" onmouseover="showTip(event, 'fs63', 200)" class="fn">p</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs61', 201)" onmouseover="showTip(event, 'fs61', 201)" class="id">portfolio</span> <span class="k">-&gt;</span> 
+        <span class="k">let</span> <span onmouseout="hideTip(event, 'fs69', 202)" onmouseover="showTip(event, 'fs69', 202)" class="fn">weight</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs63', 203)" onmouseover="showTip(event, 'fs63', 203)" class="fn">p</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs60', 204)" onmouseover="showTip(event, 'fs60', 204)" class="id">PositionValue</span> <span class="o">/</span> <span onmouseout="hideTip(event, 'fs66', 205)" onmouseover="showTip(event, 'fs66', 205)" class="id">portfolioValue</span> 
+        <span onmouseout="hideTip(event, 'fs63', 206)" onmouseover="showTip(event, 'fs63', 206)" class="fn">p</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs58', 207)" onmouseover="showTip(event, 'fs58', 207)" class="id">Id</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs69', 208)" onmouseover="showTip(event, 'fs69', 208)" class="fn">weight</span> <span class="pn">]</span>
+<span onmouseout="hideTip(event, 'fs68', 209)" onmouseover="showTip(event, 'fs68', 209)" class="id">portfolioWeights</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>[("AMZN", -0.1666666667); ("AAPL", 0.1666666667); ("GOOG", 0.3888888889);
+ ("TSLA", 0.6111111111)]</code></pre></td></tr></table>
+<h2><a name="Mean-and-Variance-of-Portfolio-Returns" class="anchor" href="#Mean-and-Variance-of-Portfolio-Returns">Mean and Variance of Portfolio Returns</a></h2>
+<h3><a name="A-portfolio-s-return" class="anchor" href="#A-portfolio-s-return">A portfolio's return.</a></h3>
+<p>A portfolio's return is the weighted average return of the portfolio's positions.</p>
+<p><span class="math">\[ r_p = \Sigma^N_{i=1} w_i r_i,\]</span></p>
+<p>where <span class="math">\(r\)</span> is return, <span class="math">\(i\)</span> indexes stocks, and <span class="math">\(w\)</span> is portfolio weights.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">type</span> <span onmouseout="hideTip(event, 'fs70', 210)" onmouseover="showTip(event, 'fs70', 210)" class="rt">PositionsWithReturn</span> <span class="o">=</span>
+    <span class="pn">{</span> <span onmouseout="hideTip(event, 'fs71', 211)" onmouseover="showTip(event, 'fs71', 211)" class="prop">Id</span><span class="pn">:</span> <span onmouseout="hideTip(event, 'fs59', 212)" onmouseover="showTip(event, 'fs59', 212)" class="rt">string</span> 
+      <span onmouseout="hideTip(event, 'fs72', 213)" onmouseover="showTip(event, 'fs72', 213)" class="prop">Weight</span><span class="pn">:</span> <span onmouseout="hideTip(event, 'fs4', 214)" onmouseover="showTip(event, 'fs4', 214)" class="vt">float</span> 
+      <span onmouseout="hideTip(event, 'fs73', 215)" onmouseover="showTip(event, 'fs73', 215)" class="prop">Return</span><span class="pn">:</span> <span onmouseout="hideTip(event, 'fs4', 216)" onmouseover="showTip(event, 'fs4', 216)" class="vt">float</span> <span class="pn">}</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs74', 217)" onmouseover="showTip(event, 'fs74', 217)" class="id">exPortfolio</span> <span class="o">=</span>
+    <span class="pn">[</span> <span class="pn">{</span> <span class="prop">Id</span> <span class="o">=</span> <span class="s">&quot;A&quot;</span><span class="pn">;</span> <span class="prop">Weight</span> <span class="o">=</span> <span class="n">0.25</span><span class="pn">;</span> <span class="prop">Return</span> <span class="o">=</span> <span class="n">0.1</span> <span class="pn">}</span>
+      <span class="pn">{</span> <span class="prop">Id</span> <span class="o">=</span> <span class="s">&quot;B&quot;</span><span class="pn">;</span> <span class="prop">Weight</span> <span class="o">=</span> <span class="n">0.75</span><span class="pn">;</span> <span class="prop">Return</span> <span class="o">=</span> <span class="n">0.2</span> <span class="pn">}</span> <span class="pn">]</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs75', 218)" onmouseover="showTip(event, 'fs75', 218)" class="id">weightsXreturn</span> <span class="o">=</span> <span class="pn">[</span> <span class="k">for</span> <span onmouseout="hideTip(event, 'fs76', 219)" onmouseover="showTip(event, 'fs76', 219)" class="fn">pos</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs74', 220)" onmouseover="showTip(event, 'fs74', 220)" class="id">exPortfolio</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs76', 221)" onmouseover="showTip(event, 'fs76', 221)" class="fn">pos</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs72', 222)" onmouseover="showTip(event, 'fs72', 222)" class="id">Weight</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs76', 223)" onmouseover="showTip(event, 'fs76', 223)" class="fn">pos</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs73', 224)" onmouseover="showTip(event, 'fs73', 224)" class="id">Return</span> <span class="pn">]</span>
+<span onmouseout="hideTip(event, 'fs75', 225)" onmouseover="showTip(event, 'fs75', 225)" class="id">weightsXreturn</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>[0.025; 0.15]</code></pre></td></tr></table>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs77', 226)" onmouseover="showTip(event, 'fs77', 226)" class="id">exPortfolioReturn</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs75', 227)" onmouseover="showTip(event, 'fs75', 227)" class="id">weightsXreturn</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs64', 228)" onmouseover="showTip(event, 'fs64', 228)" class="m">List</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs67', 229)" onmouseover="showTip(event, 'fs67', 229)" class="id">sum</span> 
+<span onmouseout="hideTip(event, 'fs77', 230)" onmouseover="showTip(event, 'fs77', 230)" class="id">exPortfolioReturn</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>0.175</code></pre></td></tr></table>
+<p>For next time: Portfolio Variance and Leverage</p>
+<h2><a name="Leverage" class="anchor" href="#Leverage">Leverage</a></h2>
+
+            <div class="fsdocs-tip" id="fs1">AccountBalances.Time: int</div>
+<div class="fsdocs-tip" id="fs2">Multiple items<br />val int : value:&#39;T -&gt; int (requires member op_Explicit)<br /><em>&lt;summary&gt;Converts the argument to signed 32-bit integer. This is a direct conversion for all 
+ primitive numeric types. For strings, the input is converted using &lt;c&gt;Int32.Parse()&lt;/c&gt;  
+ with InvariantCulture settings. Otherwise the operation requires an appropriate
+ static conversion method on the input type.&lt;/summary&gt;<br />&lt;param name=&quot;value&quot;&gt;The input value.&lt;/param&gt;<br />&lt;returns&gt;The converted int&lt;/returns&gt;</em><br /><br />--------------------<br />[&lt;Struct&gt;]
+type int = int32<br /><em>&lt;summary&gt;An abbreviation for the CLI type &lt;see cref=&quot;T:System.Int32&quot; /&gt;.&lt;/summary&gt;<br />&lt;category&gt;Basic Types&lt;/category&gt;</em><br /><br />--------------------<br />type int&lt;&#39;Measure&gt; =
+  int<br /><em>&lt;summary&gt;The type of 32-bit signed integer numbers, annotated with a unit of measure. The unit
+ of measure is erased in compiled code and when values of this type
+ are analyzed using reflection. The type is representationally equivalent to 
+ &lt;see cref=&quot;T:System.Int32&quot; /&gt;.&lt;/summary&gt;<br />&lt;category&gt;Basic Types with Units of Measure&lt;/category&gt;</em></div>
+<div class="fsdocs-tip" id="fs3">AccountBalances.Cash: float</div>
+<div class="fsdocs-tip" id="fs4">Multiple items<br />val float : value:&#39;T -&gt; float (requires member op_Explicit)<br /><em>&lt;summary&gt;Converts the argument to 64-bit float. This is a direct conversion for all 
+ primitive numeric types. For strings, the input is converted using &lt;c&gt;Double.Parse()&lt;/c&gt;  
+ with InvariantCulture settings. Otherwise the operation requires an appropriate
+ static conversion method on the input type.&lt;/summary&gt;<br />&lt;param name=&quot;value&quot;&gt;The input value.&lt;/param&gt;<br />&lt;returns&gt;The converted float&lt;/returns&gt;</em><br /><br />--------------------<br />[&lt;Struct&gt;]
+type float = System.Double<br /><em>&lt;summary&gt;An abbreviation for the CLI type &lt;see cref=&quot;T:System.Double&quot; /&gt;.&lt;/summary&gt;<br />&lt;category&gt;Basic Types&lt;/category&gt;</em><br /><br />--------------------<br />type float&lt;&#39;Measure&gt; =
+  float<br /><em>&lt;summary&gt;The type of double-precision floating point numbers, annotated with a unit of measure. 
+ The unit of measure is erased in compiled code and when values of this type
+ are analyzed using reflection. The type is representationally equivalent to 
+ &lt;see cref=&quot;T:System.Double&quot; /&gt;.&lt;/summary&gt;<br />&lt;category index=&quot;6&quot;&gt;Basic Types with Units of Measure&lt;/category&gt;</em></div>
+<div class="fsdocs-tip" id="fs5">AccountBalances.Shares: float</div>
+<div class="fsdocs-tip" id="fs6">type Trade =
+  { Shares: float
+    Price: float }</div>
+<div class="fsdocs-tip" id="fs7">Trade.Shares: float</div>
+<div class="fsdocs-tip" id="fs8">Trade.Price: float</div>
+<div class="fsdocs-tip" id="fs9">val accountAt0 : AccountBalances</div>
+<div class="fsdocs-tip" id="fs10">val tradeAt1 : Trade</div>
+<div class="fsdocs-tip" id="fs11">val updateAccount : trade:Trade -&gt; inAccount:AccountBalances -&gt; AccountBalances</div>
+<div class="fsdocs-tip" id="fs12">val trade : Trade</div>
+<div class="fsdocs-tip" id="fs13">val inAccount : AccountBalances</div>
+<div class="fsdocs-tip" id="fs14">type AccountBalances =
+  { Time: int
+    Cash: float
+    Shares: float }</div>
+<div class="fsdocs-tip" id="fs15">val tradeValue : float</div>
+<div class="fsdocs-tip" id="fs16">val newCash : float</div>
+<div class="fsdocs-tip" id="fs17">val newShares : float</div>
+<div class="fsdocs-tip" id="fs18">val newTime : int</div>
+<div class="fsdocs-tip" id="fs19">val ( expected account at t1 ) : AccountBalances</div>
+<div class="fsdocs-tip" id="fs20">val ( actual account at t1 ) : AccountBalances</div>
+<div class="fsdocs-tip" id="fs21">val failwith : message:string -&gt; &#39;T<br /><em>&lt;summary&gt;Throw a &lt;see cref=&quot;T:System.Exception&quot; /&gt; exception.&lt;/summary&gt;<br />&lt;param name=&quot;message&quot;&gt;The exception message.&lt;/param&gt;<br />&lt;returns&gt;The result value.&lt;/returns&gt;</em></div>
+<div class="fsdocs-tip" id="fs22">val accountAt1 : AccountBalances</div>
+<div class="fsdocs-tip" id="fs23">val tradeAt2 : Trade</div>
+<div class="fsdocs-tip" id="fs24">val accountAt2 : AccountBalances</div>
+<div class="fsdocs-tip" id="fs25">val accountAt1&#39; : AccountBalances</div>
+<div class="fsdocs-tip" id="fs26">val accountAt2&#39; : AccountBalances</div>
+<div class="fsdocs-tip" id="fs27">val accountAt2&#39;&#39; : AccountBalances</div>
+<div class="fsdocs-tip" id="fs28">val accountValue : stockPrice:float -&gt; account:AccountBalances -&gt; &#39;a</div>
+<div class="fsdocs-tip" id="fs29">val stockPrice : float</div>
+<div class="fsdocs-tip" id="fs30">val account : AccountBalances</div>
+<div class="fsdocs-tip" id="fs31">val aaplPositionValue : float</div>
+<div class="fsdocs-tip" id="fs32">val googPositionValue : float</div>
+<div class="fsdocs-tip" id="fs33">val tslaPositionValue : float</div>
+<div class="fsdocs-tip" id="fs34">val portfolioValueA : float</div>
+<div class="fsdocs-tip" id="fs35">val aaplWeight : float</div>
+<div class="fsdocs-tip" id="fs36">val googWeight : float</div>
+<div class="fsdocs-tip" id="fs37">val tslaWeight : float</div>
+<div class="fsdocs-tip" id="fs38">val shortAt1 : Trade</div>
+<div class="fsdocs-tip" id="fs39">val shortCoverAt2 : Trade</div>
+<div class="fsdocs-tip" id="fs40">val amznPositionValueB : float</div>
+<div class="fsdocs-tip" id="fs41">val aaplPositionValueB : float</div>
+<div class="fsdocs-tip" id="fs42">val googPositionValueB : float</div>
+<div class="fsdocs-tip" id="fs43">val tslaPositionValueB : float</div>
+<div class="fsdocs-tip" id="fs44">val portfolioValueB : float</div>
+<div class="fsdocs-tip" id="fs45">val amznWeightB : float</div>
+<div class="fsdocs-tip" id="fs46">val aaplWeightB : float</div>
+<div class="fsdocs-tip" id="fs47">val googWeightB : float</div>
+<div class="fsdocs-tip" id="fs48">val tslaWeightB : float</div>
+<div class="fsdocs-tip" id="fs49">val koPositionValue : float</div>
+<div class="fsdocs-tip" id="fs50">val hogPositionValue : float</div>
+<div class="fsdocs-tip" id="fs51">val yumPositionValue : float</div>
+<div class="fsdocs-tip" id="fs52">val dollarsLong : float</div>
+<div class="fsdocs-tip" id="fs53">val koWeight : float</div>
+<div class="fsdocs-tip" id="fs54">val hogWeight : float</div>
+<div class="fsdocs-tip" id="fs55">val yumWeight : float</div>
+<div class="fsdocs-tip" id="fs56">val printfn : format:Printf.TextWriterFormat&lt;&#39;T&gt; -&gt; &#39;T<br /><em>&lt;summary&gt;Print to &lt;c&gt;stdout&lt;/c&gt; using the given format, and add a newline.&lt;/summary&gt;<br />&lt;param name=&quot;format&quot;&gt;The formatter.&lt;/param&gt;<br />&lt;returns&gt;The formatted result.&lt;/returns&gt;</em></div>
+<div class="fsdocs-tip" id="fs57">type Position =
+  { Id: string
+    PositionValue: float }</div>
+<div class="fsdocs-tip" id="fs58">Position.Id: string</div>
+<div class="fsdocs-tip" id="fs59">Multiple items<br />val string : value:&#39;T -&gt; string<br /><em>&lt;summary&gt;Converts the argument to a string using &lt;c&gt;ToString&lt;/c&gt;.&lt;/summary&gt;<br />&lt;remarks&gt;For standard integer and floating point values the and any type that implements &lt;c&gt;IFormattable&lt;/c&gt;&lt;c&gt;ToString&lt;/c&gt; conversion uses &lt;c&gt;CultureInfo.InvariantCulture&lt;/c&gt;. &lt;/remarks&gt;<br />&lt;param name=&quot;value&quot;&gt;The input value.&lt;/param&gt;<br />&lt;returns&gt;The converted string.&lt;/returns&gt;</em><br /><br />--------------------<br />type string = System.String<br /><em>&lt;summary&gt;An abbreviation for the CLI type &lt;see cref=&quot;T:System.String&quot; /&gt;.&lt;/summary&gt;<br />&lt;category&gt;Basic Types&lt;/category&gt;</em></div>
+<div class="fsdocs-tip" id="fs60">Position.PositionValue: float</div>
+<div class="fsdocs-tip" id="fs61">val portfolio : Position list</div>
+<div class="fsdocs-tip" id="fs62">val positionValues : float list</div>
+<div class="fsdocs-tip" id="fs63">val p : Position</div>
+<div class="fsdocs-tip" id="fs64">Multiple items<br />module List
+
+from Microsoft.FSharp.Collections<br /><em>&lt;summary&gt;Contains operations for working with values of type &lt;see cref=&quot;T:Microsoft.FSharp.Collections.list`1&quot; /&gt;.&lt;/summary&gt;<br />&lt;namespacedoc&gt;&lt;summary&gt;Operations for collections such as lists, arrays, sets, maps and sequences. See also 
+    &lt;a href=&quot;https://docs.microsoft.com/dotnet/fsharp/language-reference/fsharp-collection-types&quot;&gt;F# Collection Types&lt;/a&gt; in the F# Language Guide.
+ &lt;/summary&gt;&lt;/namespacedoc&gt;</em><br /><br />--------------------<br />type List&lt;&#39;T&gt; =
+  | ( [] )
+  | ( :: ) of Head: &#39;T * Tail: &#39;T list
+    interface IReadOnlyList&lt;&#39;T&gt;
+    interface IReadOnlyCollection&lt;&#39;T&gt;
+    interface IEnumerable
+    interface IEnumerable&lt;&#39;T&gt;
+    member GetReverseIndex : rank:int * offset:int -&gt; int
+    member GetSlice : startIndex:int option * endIndex:int option -&gt; &#39;T list
+    static member Cons : head:&#39;T * tail:&#39;T list -&gt; &#39;T list
+    member Head : &#39;T
+    member IsEmpty : bool
+    member Item : index:int -&gt; &#39;T with get
+    ...<br /><em>&lt;summary&gt;The type of immutable singly-linked lists.&lt;/summary&gt;<br />&lt;remarks&gt;Use the constructors &lt;c&gt;[]&lt;/c&gt; and &lt;c&gt;::&lt;/c&gt; (infix) to create values of this type, or
+ the notation &lt;c&gt;[1;2;3]&lt;/c&gt;. Use the values in the &lt;c&gt;List&lt;/c&gt; module to manipulate 
+ values of this type, or pattern match against the values directly.
+ &lt;/remarks&gt;<br />&lt;exclude /&gt;</em></div>
+<div class="fsdocs-tip" id="fs65">val map : mapping:(&#39;T -&gt; &#39;U) -&gt; list:&#39;T list -&gt; &#39;U list<br /><em>&lt;summary&gt;Builds a new collection whose elements are the results of applying the given function
+ to each of the elements of the collection.&lt;/summary&gt;<br />&lt;param name=&quot;mapping&quot;&gt;The function to transform elements from the input list.&lt;/param&gt;<br />&lt;param name=&quot;list&quot;&gt;The input list.&lt;/param&gt;<br />&lt;returns&gt;The list of transformed elements.&lt;/returns&gt;</em></div>
+<div class="fsdocs-tip" id="fs66">val portfolioValue : float</div>
+<div class="fsdocs-tip" id="fs67">val sum : list:&#39;T list -&gt; &#39;T (requires member ( + ) and member get_Zero)<br /><em>&lt;summary&gt;Returns the sum of the elements in the list.&lt;/summary&gt;<br />&lt;param name=&quot;list&quot;&gt;The input list.&lt;/param&gt;<br />&lt;returns&gt;The resulting sum.&lt;/returns&gt;</em></div>
+<div class="fsdocs-tip" id="fs68">val portfolioWeights : (string * float) list</div>
+<div class="fsdocs-tip" id="fs69">val weight : float</div>
+<div class="fsdocs-tip" id="fs70">type PositionsWithReturn =
+  { Id: string
+    Weight: float
+    Return: float }</div>
+<div class="fsdocs-tip" id="fs71">PositionsWithReturn.Id: string</div>
+<div class="fsdocs-tip" id="fs72">PositionsWithReturn.Weight: float</div>
+<div class="fsdocs-tip" id="fs73">PositionsWithReturn.Return: float</div>
+<div class="fsdocs-tip" id="fs74">val exPortfolio : PositionsWithReturn list</div>
+<div class="fsdocs-tip" id="fs75">val weightsXreturn : float list</div>
+<div class="fsdocs-tip" id="fs76">val pos : PositionsWithReturn</div>
+<div class="fsdocs-tip" id="fs77">val exPortfolioReturn : float</div>
+
+        </div>
+
+        <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+        <script type="text/javascript">var fsdocs_search_baseurl = '/Teaching/';</script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
+        <script type="text/javascript" src="/Teaching/content/fsdocs-search.js"></script>
+        <!-- END SEARCH BOX: this adds support for the search box -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    </div>
+</body>
+
+</html>
